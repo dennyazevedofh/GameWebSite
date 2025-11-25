@@ -76,10 +76,11 @@
     --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
 }
 
-/*
-    Reset
-*/
-*, 
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+
+*,
 *::before,
 *::after {
     margin: 0;
@@ -94,4 +95,354 @@ li {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+a,
+img,
+span,
+time,
+input,
+button,
+ion-icon {
+    display: block;
+}
+
+img {
+    height: auto;
+}
+
+input,
+button {
+    background: none;
+    border: none;
+    font: inherit;
+}
+
+input {
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+ion-icon {
+    pointer-events: none;
+}
+
+address {
+    font-style: normal;
+}
+
+html {
+    font-family: var(--ff-poppins);
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--raisin-black-3);
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+:focus-visible {
+    outline-offset: 4px;
+}
+
+/*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
+
+.container {
+    padding-inline: 15px;
+}
+
+.section {
+    padding-block: var(--section-padding);
+}
+
+.h1,
+.h2,
+.h3 {
+    color: var(--white);
+    font-family: var(--ff-oxanium);
+    font-weight: var(--fw-800);
+    line-height: 1;
+}
+
+.h1 {
+    font-size: var(--fs-2);
+    letter-spacing: -3px;
+}
+
+.h2 {
+    font-size: var(--fs-3);
+}
+
+.h3 {
+    font-size: var(--fs-6);
+    text-transform: uppercase;
+}
+
+:is(.h1, .h2, .h3, .card-price) .span {
+    display: inline-block;
+    color: var(--marigold);
+}
+
+.btn {
+    margin-inline: auto;
+    color: var(--eerie-black-1);
+    font-size: var(--fs-8);
+    text-transform: uppercase;
+    font-weight: var(--fw-700);
+    min-height: 55px;
+    padding-inline: 35px;
+}
+
+.skewBg {
+    position: relative;
+    z-index: 1;
+}
+
+.skewBg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: skewX(var(--skewX, -16deg));
+    background-color: var(--bg, var(--marigold));
+    z-index: -1;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(100% + 8px);
+    width: 5px;
+    transform: skewX(-16deg) translateX(var(--translateX, 0));
+    background-color: var(--marigold);
+    transition: var(--transition);
+}
+
+.btn:is(:hover, :focus)::after {
+    --translateX: -13px;
+}
+
+.has-scrollbar {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-block-end: 30px;
+    scroll-snap-type: inline mandatory;
+}
+
+.has-scrollbar::-webkit-scrollbar {
+    height: 10px;
+}
+
+.has-scrollbar::-webkit-scrollbar-track {
+    outline: 3px solid var(--marigold);
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--marigold);
+}
+
+.has-scrollbar::-webkit-scrollbar-button {
+    width: calc(25% - 40px);
+}
+
+.section-subtitle,
+.section-title {
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    color: var(--silver);
+    font-size: var(--fs-9);
+    font-weight: var(--fw-700);
+    margin-block-end: 10px;
+}
+
+.section-title::after {
+    content: url("../images/title-underline.png");
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scrollbar-item {
+    min-width: 100%;
+    scroll-snap-align: start;
+}
+
+.card-banner {
+    background-color: var(--light-gray-1);
+}
+
+.img-holder {
+    aspect-ratio: var(--width) / var(--height);
+}
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-badge {
+    min-height: 30px;
+    color: var(--eerie-black-1);
+    font-size: var(--fs-11);
+    font-weight: var(--fw-700);
+    text-transform: uppercase;
+    max-width: max-content;
+    display: grid;
+    align-items: center;
+    padding-inline: 20px;
+}
+
+.card-badge::before {
+    --skewX: -10deg;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.section-text {
+    color: var(--color, var(--light-gray-1));
+    font-size: var(--fs-8);
+    font-weight: var(--fw-500);
+    max-width: 65ch;
+    margin-inline: auto;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+.header-top,
+.cart-btn,
+.header-bottom::before,
+.navbar-link::before {
+    display: none;
+}
+
+.header {
+    position: relative;
+    min-height: 1px;
+}
+
+.header-bottom {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    width: 100%;
+    background-color: var(--raisin-black-2);
+    padding-block: 20px;
+    z-index: 4;
+}
+
+.header-bottom.active {
+    position: fixed;
+    top: -85px;
+    animation: slideIn 0.5s var(--cubic-out) forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.header-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--white);
+    font-family: var(--ff-oxanium);
+    font-size: 3rem;
+    font-weight: var(--fw-800);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-btn {
+    color: var(--marigold);
+    padding: 13px;
+    box-shadow: var(--shadow-1);
+    border-radius: 4px;
+}
+
+.search-btn ion-icon {
+    --ionicon-stroke-width: 80px;
+}
+
+.nav-toggle-btn {
+    color: var(--white);
+    font-size: 30px;
+    border: 1px solid var(--white);
+    padding: 4px;
+}
+
+.nav-toggle-btn.active .menu,
+.nav-toggle-btn .close {
+    display: none;
+}
+
+.nav-toggle-btn .menu,
+.nav-toggle-btn.active .close {
+    display: block;
+}
+
+.navbar {
+    background-color: var(--eerie-black-1);
+    color: var(--white);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    max-width: 350px;
+    visibility: hidden;
+    max-height: 0;
+    transition: 0.25s var(--cubic-out);
+    overflow: hidden;
+}
+
+.navbar.active {
+    visibility: visible;
+    max-height: 275px;
+    transition-duration: 0.5s;
+}
+
+.navbar-item:not(:last-child) {
+    border-block-end: 1px solid var(--white_15);
+}
+
+.navbar-link {
+    padding: 10px 25px;
+    transition: var(--transition);
+}
+
+.navbar-link:is(:hover, :focus) {
+    background-color: var(--white_10);
 }
